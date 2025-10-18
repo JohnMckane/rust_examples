@@ -15,7 +15,7 @@ fn main() {
                 Err(_error) => (0, false),
             };
             if !index.1 {
-                println!("Did not parse int");
+                eprintln!("Did not parse int");
                 continue;
             }
             let index = index.0;
@@ -24,7 +24,7 @@ fn main() {
             let a_element = a[index];
             println!("a[{}]: {},b[{}]: {}", index, index, a_element, b_element);
             }else {
-                println!("out of bounds");
+                eprintln!("out of bounds");
         }
     }
 }
