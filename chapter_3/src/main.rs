@@ -17,5 +17,11 @@ fn main() {
     println!("spaces: {spaces}");
     let spaces = spaces.len();
     println!("spaces: {spaces}");
+    println!("tup example");
+    let tup = ("zero", "one", "two");
+
+    println!("tup: {}", tup.0);
+    println!("tup: {}", tup.1);
+    println!("tup: {}", tup.2);
 
 }
