@@ -7,6 +7,15 @@ pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
     }
     results
 }
+pub fn search_case_insensitive<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
+    let mut results = Vec::new();
+    for line in contents.lines() {
+        if line.to_lowercase().contains(&query.to_lowercase()) {
+            results.push(line);
+        }
+    }
+    results
+}
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -30,5 +39,15 @@ quick, speedy, productive.
 Pick three.";
 
         assert_eq!(vec!["quick, speedy, productive."], search(query, contents));
+    }
+    #[test]
+    fn two_result_insensitive() {
+        let query = "DUCT";
+        let contents = "\
+Rust:
+quick, speedy, productive.
+Pick three.";
+
+        assert_eq!(vec!["quick, speedy, productive."], search_case_insensitive(query, contents));
     }
 }
