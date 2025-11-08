@@ -22,10 +22,9 @@ impl Config {
     fn new(args: &[String]) -> Result<Config, &'static str> {
         if args.len() < 3 {
             return Err("Not enough args")
-        } else if args.len() == 3 {
-            return Ok(Config {query: args[1].clone(), file_path: args[2].clone(), ignore_case: false})
         }
-        return Err("Can't do that yet")
+        let ignore_case = env::var("IGNORE_CASE").is_ok();
+        return Ok(Config {query: args[1].clone(), file_path: args[2].clone(), ignore_case: ignore_case})
     }
 }
 fn run(config: Config) -> Result<(), Box<dyn Error>> {
